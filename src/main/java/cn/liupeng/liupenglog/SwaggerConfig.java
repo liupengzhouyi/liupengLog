@@ -1,4 +1,4 @@
-package cn.liupengstudy.aquacltureserver;
+package cn.liupeng.liupenglog;
 
 import com.github.xiaoymin.swaggerbootstrapui.annotations.EnableSwaggerBootstrapUI;
 import org.springframework.context.annotation.Bean;
@@ -28,14 +28,14 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("cn.liupengstudy.aquacltureserver"))
+                .apis(RequestHandlerSelectors.basePackage("cn.liupeng.liupenglog"))
                 .paths(PathSelectors.any())
                 .build();
     }
 
     private ApiInfo apiInfo() {
         return new ApiInfoBuilder()
-                .title("Aquacltureserver APIs")
+                .title("Liupeng Flog APIs")
                 .description("swagger-bootstrap-ui")
                 .termsOfServiceUrl("http://localhost:8080/")
                 .version("1.0")
