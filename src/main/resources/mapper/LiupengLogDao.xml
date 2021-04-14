@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.liupeng.liupenglog.dao.LiupengLogDao">
+
+    <resultMap type="cn.liupeng.liupenglog.entity.LiupengLog" id="LiupengLogMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="logAbstract" column="log_abstract" jdbcType="VARCHAR"/>
+        <result property="uploadDateTime" column="upload_date_time" jdbcType="VARCHAR"/>
+        <result property="linkid" column="linkID" jdbcType="INTEGER"/>
+        <result property="bigName" column="big_name" jdbcType="INTEGER"/>
+        <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="LiupengLogMap">
+        select id,
+               name,
+               log_abstract,
+               upload_date_time,
+               linkID,
+               big_name,
+               is_delete
+        from flog.liupeng_log
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="LiupengLogMap">
+        select id,
+               name,
+               log_abstract,
+               upload_date_time,
+               linkID,
+               big_name,
+               is_delete
+        from flog.liupeng_log limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="LiupengLogMap">
+        select id,
+               name,
+               log_abstract,
+               upload_date_time,
+               linkID,
+               big_name,
+               is_delete
+        from flog.liupeng_log
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into flog.liupeng_log(name, log_abstract, upload_date_time, linkID, big_name, is_delete)
+        values (#{name}, #{logAbstract}, #{uploadDateTime}, #{linkid}, #{bigName}, #{isDelete})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into flog.liupeng_log(name, log_abstract, upload_date_time, linkID, big_name, is_delete)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.logAbstract}, #{entity.uploadDateTime}, #{entity.linkid}, #{entity.bigName},
+            #{entity.isDelete})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into flog.liupeng_log(name, log_abstract, upload_date_time, linkID, big_name, is_delete)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.name}, #{entity.logAbstract}, #{entity.uploadDateTime}, #{entity.linkid}, #{entity.bigName},
+            #{entity.isDelete})
+        </foreach>
+        on duplicate key update
+        name = values(name) , log_abstract = values(log_abstract) , upload_date_time = values(upload_date_time) , linkID
+        = values(linkID) , big_name = values(big_name) , is_delete = values(is_delete)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update flog.liupeng_log
+        <set>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="logAbstract != null and logAbstract != ''">
+                log_abstract = #{logAbstract},
+            </if>
+            <if test="uploadDateTime != null and uploadDateTime != ''">
+                upload_date_time = #{uploadDateTime},
+            </if>
+            <if test="linkid != null">
+                linkID = #{linkid},
+            </if>
+            <if test="bigName != null">
+                big_name = #{bigName},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from flog.liupeng_log
+        where id = #{id}
+    </delete>
+
+</mapper>
+
