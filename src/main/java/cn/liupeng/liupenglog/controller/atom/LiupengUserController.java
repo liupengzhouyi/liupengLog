@@ -4,6 +4,7 @@ import cn.liupeng.liupenglog.entity.LiupengUser;
 import cn.liupeng.liupenglog.service.LiupengUserService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,7 +36,7 @@ public class LiupengUserController {
      */
     @ApiOperation(value = "查询一个用户", notes = "100001")
     @RequestMapping(path = "selectOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengUser selectOne(Integer id) {
+    public LiupengUser selectOne(@RequestBody Integer id) {
         return this.liupengUserService.queryById(id);
     }
 
@@ -57,7 +58,7 @@ public class LiupengUserController {
      */
     @ApiOperation(value = "添加一个用户", notes = "100003")
     @RequestMapping(path = "addOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengUser addOne(LiupengUser liupengUser) {
+    public LiupengUser addOne(@RequestBody LiupengUser liupengUser) {
         return this.liupengUserService.insert(liupengUser);
     }
 
@@ -68,7 +69,7 @@ public class LiupengUserController {
      */
     @ApiOperation(value = "删除一个用户", notes = "100004")
     @RequestMapping(path = "delOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public boolean delOne(LiupengUser liupengUser) {
+    public boolean delOne(@RequestBody LiupengUser liupengUser) {
         return this.liupengUserService.deleteById(liupengUser.getId());
     }
 
@@ -79,7 +80,7 @@ public class LiupengUserController {
      */
     @ApiOperation(value = "用户更新数据", notes = "100005")
     @RequestMapping(path = "updateOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengUser update(LiupengUser liupengUser) {
+    public LiupengUser update(@RequestBody LiupengUser liupengUser) {
         return this.liupengUserService.update(liupengUser);
     }
 

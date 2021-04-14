@@ -68,4 +68,13 @@ public class LiupengLink implements Serializable {
         this.isDelete = isDelete;
     }
 
+    @Override
+    public String toString() {
+        return "LiupengLink{" +
+                "id=" + id +
+                ", title='" + title + '\'' +
+                ", text='" + text + '\'' +
+                ", isDelete=" + isDelete +
+                '}';
+    }
 }

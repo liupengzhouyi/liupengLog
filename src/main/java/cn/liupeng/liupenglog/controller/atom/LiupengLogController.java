@@ -4,6 +4,7 @@ import cn.liupeng.liupenglog.entity.LiupengLog;
 import cn.liupeng.liupenglog.service.LiupengLogService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,7 +36,7 @@ public class LiupengLogController {
      */
     @ApiOperation(value = "查询一个Log", notes = "090001")
     @RequestMapping(path = "selectOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengLog selectOne(Integer id) {
+    public LiupengLog selectOne(@RequestBody Integer id) {
         return this.liupengLogService.queryById(id);
     }
 
@@ -57,7 +58,7 @@ public class LiupengLogController {
      */
     @ApiOperation(value = "添加一个Log", notes = "090003")
     @RequestMapping(path = "addOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengLog addOne(LiupengLog liupengLog) {
+    public LiupengLog addOne(@RequestBody LiupengLog liupengLog) {
         return this.liupengLogService.insert(liupengLog);
     }
 
@@ -68,7 +69,7 @@ public class LiupengLogController {
      */
     @ApiOperation(value = "删除一个Log", notes = "090004")
     @RequestMapping(path = "delOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public boolean delOne(LiupengLog liupengLog) {
+    public boolean delOne(@RequestBody LiupengLog liupengLog) {
         return this.liupengLogService.deleteById(liupengLog.getId());
     }
 
@@ -79,7 +80,7 @@ public class LiupengLogController {
      */
     @ApiOperation(value = "Log更新数据", notes = "090005")
     @RequestMapping(path = "updateOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengLog update(LiupengLog liupengLog) {
+    public LiupengLog update(@RequestBody LiupengLog liupengLog) {
         return this.liupengLogService.update(liupengLog);
     }
 

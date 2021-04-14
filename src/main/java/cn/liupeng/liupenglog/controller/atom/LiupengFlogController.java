@@ -4,6 +4,7 @@ import cn.liupeng.liupenglog.entity.LiupengFlog;
 import cn.liupeng.liupenglog.service.LiupengFlogService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,7 +36,7 @@ public class LiupengFlogController {
      */
     @ApiOperation(value = "查询一个Flag", notes = "060001")
     @RequestMapping(path = "selectOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengFlog selectOne(Integer id) {
+    public LiupengFlog selectOne(@RequestBody Integer id) {
         return this.liupengFlogService.queryById(id);
     }
 
@@ -57,7 +58,7 @@ public class LiupengFlogController {
      */
     @ApiOperation(value = "添加一个Flag", notes = "060003")
     @RequestMapping(path = "addOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengFlog addOne(LiupengFlog liupengFlog) {
+    public LiupengFlog addOne(@RequestBody LiupengFlog liupengFlog) {
         return this.liupengFlogService.insert(liupengFlog);
     }
 
@@ -68,7 +69,7 @@ public class LiupengFlogController {
      */
     @ApiOperation(value = "删除一个Flag", notes = "060004")
     @RequestMapping(path = "delOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public boolean delOne(LiupengFlog liupengFlog) {
+    public boolean delOne(@RequestBody LiupengFlog liupengFlog) {
         return this.liupengFlogService.deleteById(liupengFlog.getId());
     }
 
@@ -79,7 +80,7 @@ public class LiupengFlogController {
      */
     @ApiOperation(value = "Flag更新数据", notes = "060005")
     @RequestMapping(path = "updateOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengFlog update(LiupengFlog liupengFlog) {
+    public LiupengFlog update(@RequestBody LiupengFlog liupengFlog) {
         return this.liupengFlogService.update(liupengFlog);
     }
 

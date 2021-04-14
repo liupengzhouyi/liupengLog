@@ -4,6 +4,7 @@ import cn.liupeng.liupenglog.entity.LiupengImg;
 import cn.liupeng.liupenglog.service.LiupengImgService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,7 +36,7 @@ public class LiupengImgController {
      */
     @ApiOperation(value = "查询一个IMG", notes = "070001")
     @RequestMapping(path = "selectOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengImg selectOne(Integer id) {
+    public LiupengImg selectOne(@RequestBody Integer id) {
         return this.liupengImgService.queryById(id);
     }
 
@@ -57,7 +58,7 @@ public class LiupengImgController {
      */
     @ApiOperation(value = "添加一个IMG", notes = "070003")
     @RequestMapping(path = "addOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengImg addOne(LiupengImg liupengImg) {
+    public LiupengImg addOne(@RequestBody LiupengImg liupengImg) {
         return this.liupengImgService.insert(liupengImg);
     }
 
@@ -68,7 +69,7 @@ public class LiupengImgController {
      */
     @ApiOperation(value = "删除一个IMG", notes = "070004")
     @RequestMapping(path = "delOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public boolean delOne(LiupengImg liupengImg) {
+    public boolean delOne(@RequestBody LiupengImg liupengImg) {
         return this.liupengImgService.deleteById(liupengImg.getId());
     }
 
@@ -79,7 +80,7 @@ public class LiupengImgController {
      */
     @ApiOperation(value = "IMG更新数据", notes = "070008")
     @RequestMapping(path = "updateOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengImg update(LiupengImg liupengImg) {
+    public LiupengImg update(@RequestBody LiupengImg liupengImg) {
         return this.liupengImgService.update(liupengImg);
     }
 

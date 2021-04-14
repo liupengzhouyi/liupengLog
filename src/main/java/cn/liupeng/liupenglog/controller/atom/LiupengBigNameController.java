@@ -4,6 +4,7 @@ import cn.liupeng.liupenglog.entity.LiupengBigName;
 import cn.liupeng.liupenglog.service.LiupengBigNameService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,7 +36,7 @@ public class LiupengBigNameController {
      */
     @ApiOperation(value = "查询一个称号", notes = "050001")
     @RequestMapping(path = "selectOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengBigName selectOne(Integer id) {
+    public LiupengBigName selectOne(@RequestBody Integer id) {
         return this.liupengBigNameService.queryById(id);
     }
 
@@ -57,7 +58,7 @@ public class LiupengBigNameController {
      */
     @ApiOperation(value = "添加一个称号", notes = "050003")
     @RequestMapping(path = "addOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengBigName addOne(LiupengBigName liupengBigName) {
+    public LiupengBigName addOne(@RequestBody LiupengBigName liupengBigName) {
         return this.liupengBigNameService.insert(liupengBigName);
     }
 
@@ -68,7 +69,7 @@ public class LiupengBigNameController {
      */
     @ApiOperation(value = "删除一个称号", notes = "050004")
     @RequestMapping(path = "delOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public boolean delOne(LiupengBigName liupengBigName) {
+    public boolean delOne(@RequestBody LiupengBigName liupengBigName) {
         return this.liupengBigNameService.deleteById(liupengBigName.getId());
     }
 
@@ -79,7 +80,7 @@ public class LiupengBigNameController {
      */
     @ApiOperation(value = "称号更新数据", notes = "050005")
     @RequestMapping(path = "updateOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengBigName update(LiupengBigName liupengBigName) {
+    public LiupengBigName update(@RequestBody LiupengBigName liupengBigName) {
         return this.liupengBigNameService.update(liupengBigName);
     }
 

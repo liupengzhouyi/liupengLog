@@ -4,6 +4,7 @@ import cn.liupeng.liupenglog.entity.LiupengLink;
 import cn.liupeng.liupenglog.service.LiupengLinkService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,7 +36,7 @@ public class LiupengLinkController {
      */
     @ApiOperation(value = "查询一个Link文章", notes = "080001")
     @RequestMapping(path = "selectOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengLink selectOne(Integer id) {
+    public LiupengLink selectOne(@RequestBody Integer id) {
         return this.liupengLinkService.queryById(id);
     }
 
@@ -57,7 +58,8 @@ public class LiupengLinkController {
      */
     @ApiOperation(value = "添加一个Link文章", notes = "080003")
     @RequestMapping(path = "addOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengLink addOne(LiupengLink liupengLink) {
+    public LiupengLink addOne(@RequestBody LiupengLink liupengLink) {
+        System.out.println(liupengLink.toString());
         return this.liupengLinkService.insert(liupengLink);
     }
 
@@ -68,7 +70,7 @@ public class LiupengLinkController {
      */
     @ApiOperation(value = "删除一个Link文章", notes = "080004")
     @RequestMapping(path = "delOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public boolean delOne(LiupengLink liupengLink) {
+    public boolean delOne(@RequestBody LiupengLink liupengLink) {
         return this.liupengLinkService.deleteById(liupengLink.getId());
     }
 
@@ -79,7 +81,7 @@ public class LiupengLinkController {
      */
     @ApiOperation(value = "Link文章更新数据", notes = "080005")
     @RequestMapping(path = "updateOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
-    public LiupengLink update(LiupengLink liupengLink) {
+    public LiupengLink update(@RequestBody LiupengLink liupengLink) {
         return this.liupengLinkService.update(liupengLink);
     }
 
