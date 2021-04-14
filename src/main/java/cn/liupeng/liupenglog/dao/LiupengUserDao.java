@@ -10,7 +10,7 @@ import java.util.List;
  * 用户表(LiupengUser)表数据库访问层
  *
  * @author liupeng
- * @since 2021-04-14 12:59:53
+ * @since 2021-04-14 13:17:40
  */
 @Mapper
 public interface LiupengUserDao {

@@ -9,11 +9,11 @@ import io.swagger.annotations.ApiModelProperty;
  * 用户表(LiupengUser)实体类
  *
  * @author liupeng
- * @since 2021-04-14 12:59:51
+ * @since 2021-04-14 13:17:33
  */
 @ApiModel(value = "LiupengUser")
 public class LiupengUser implements Serializable {
-    private static final long serialVersionUID = 691970215584309428L;
+    private static final long serialVersionUID = -63350358119168181L;
     /**
      * 用户ID
      */
