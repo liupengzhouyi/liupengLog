@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.liupeng.liupenglog.dao.LiupengLinkDao">
+
+    <resultMap type="cn.liupeng.liupenglog.entity.LiupengLink" id="LiupengLinkMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="text" column="text" jdbcType="VARCHAR"/>
+        <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="LiupengLinkMap">
+        select id,
+               title,
+               text,
+               is_delete
+        from flog.liupeng_link
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="LiupengLinkMap">
+        select id,
+               title,
+               text,
+               is_delete
+        from flog.liupeng_link limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="LiupengLinkMap">
+        select id,
+               title,
+               text,
+               is_delete
+        from flog.liupeng_link
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into flog.liupeng_link(title, text, is_delete)
+        values (#{title}, #{text}, #{isDelete})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into flog.liupeng_link(title, text, is_delete)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.title}, #{entity.text}, #{entity.isDelete})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into flog.liupeng_link(title, text, is_delete)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.title}, #{entity.text}, #{entity.isDelete})
+        </foreach>
+        on duplicate key update
+        title = values(title) , text = values(text) , is_delete = values(is_delete)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update flog.liupeng_link
+        <set>
+            <if test="title != null and title != ''">
+                title = #{title},
+            </if>
+            <if test="text != null and text != ''">
+                text = #{text},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from flog.liupeng_link
+        where id = #{id}
+    </delete>
+
+</mapper>
+
