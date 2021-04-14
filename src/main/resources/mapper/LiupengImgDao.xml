@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cn.liupeng.liupenglog.dao.LiupengImgDao">
+
+    <resultMap type="cn.liupeng.liupenglog.entity.LiupengImg" id="LiupengImgMap">
+        <result property="id" column="id" jdbcType="INTEGER"/>
+        <result property="uploadDateTime" column="upload_date_time" jdbcType="VARCHAR"/>
+        <result property="path" column="path" jdbcType="VARCHAR"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="imgAbstract" column="img_abstract" jdbcType="VARCHAR"/>
+        <result property="isDelete" column="is_delete" jdbcType="INTEGER"/>
+    </resultMap>
+
+    <!--查询单个-->
+    <select id="queryById" resultMap="LiupengImgMap">
+        select id,
+               upload_date_time,
+               path,
+               name,
+               img_abstract,
+               is_delete
+        from flog.liupeng_img
+        where id = #{id}
+    </select>
+
+    <!--查询指定行数据-->
+    <select id="queryAllByLimit" resultMap="LiupengImgMap">
+        select id,
+               upload_date_time,
+               path,
+               name,
+               img_abstract,
+               is_delete
+        from flog.liupeng_img limit #{offset}, #{limit}
+    </select>
+
+    <!--通过实体作为筛选条件查询-->
+    <select id="queryAll" resultMap="LiupengImgMap">
+        select id,
+               upload_date_time,
+               path,
+               name,
+               img_abstract,
+               is_delete
+        from flog.liupeng_img
+    </select>
+
+    <!--新增所有列-->
+    <insert id="insert" keyProperty="id" useGeneratedKeys="true">
+        insert into flog.liupeng_img(upload_date_time, path, name, img_abstract, is_delete)
+        values (#{uploadDateTime}, #{path}, #{name}, #{imgAbstract}, #{isDelete})
+    </insert>
+
+    <insert id="insertBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into flog.liupeng_img(upload_date_time, path, name, img_abstract, is_delete)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.uploadDateTime}, #{entity.path}, #{entity.name}, #{entity.imgAbstract}, #{entity.isDelete})
+        </foreach>
+    </insert>
+
+    <insert id="insertOrUpdateBatch" keyProperty="id" useGeneratedKeys="true">
+        insert into flog.liupeng_img(upload_date_time, path, name, img_abstract, is_delete)
+        values
+        <foreach collection="entities" item="entity" separator=",">
+            (#{entity.uploadDateTime}, #{entity.path}, #{entity.name}, #{entity.imgAbstract}, #{entity.isDelete})
+        </foreach>
+        on duplicate key update
+        upload_date_time = values(upload_date_time) , path = values(path) , name = values(name) , img_abstract =
+        values(img_abstract) , is_delete = values(is_delete)
+    </insert>
+
+    <!--通过主键修改数据-->
+    <update id="update">
+        update flog.liupeng_img
+        <set>
+            <if test="uploadDateTime != null and uploadDateTime != ''">
+                upload_date_time = #{uploadDateTime},
+            </if>
+            <if test="path != null and path != ''">
+                path = #{path},
+            </if>
+            <if test="name != null and name != ''">
+                name = #{name},
+            </if>
+            <if test="imgAbstract != null and imgAbstract != ''">
+                img_abstract = #{imgAbstract},
+            </if>
+            <if test="isDelete != null">
+                is_delete = #{isDelete},
+            </if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <!--通过主键删除-->
+    <delete id="deleteById">
+        delete
+        from flog.liupeng_img
+        where id = #{id}
+    </delete>
+
+</mapper>
+
