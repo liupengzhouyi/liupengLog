@@ -1,4 +1,4 @@
-package cn.liupengstudy.aquacltureserver;
+package cn.liupeng.liupenglog;
 
 import com.github.xiaoymin.swaggerbootstrapui.annotations.EnableSwaggerBootstrapUI;
 import org.springframework.context.annotation.Bean;
@@ -28,7 +28,7 @@ public class SwaggerConfig {
         return new Docket(DocumentationType.SWAGGER_2)
                 .apiInfo(apiInfo())
                 .select()
-                .apis(RequestHandlerSelectors.basePackage("cn.liupengstudy.aquacltureserver"))
+                .apis(RequestHandlerSelectors.basePackage("cn.liupeng.liupenglog"))
                 .paths(PathSelectors.any())
                 .build();
     }
