@@ -1,13 +1,14 @@
-package cn.liupeng.liupenglog.controller;
+package cn.liupeng.liupenglog.controller.atom;
 
 import cn.liupeng.liupenglog.entity.LiupengUser;
 import cn.liupeng.liupenglog.service.LiupengUserService;
-import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public class LiupengUserController {
      * @param id 主键
      * @return 单条数据
      */
-    @ApiOperation("查询一个用户")
+    @ApiOperation(value = "查询一个用户", notes = "100001")
     @RequestMapping(path = "selectOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public LiupengUser selectOne(Integer id) {
         return this.liupengUserService.queryById(id);
@@ -43,7 +44,7 @@ public class LiupengUserController {
      *
      * @return List
      */
-    @ApiOperation("查询所有用户")
+    @ApiOperation(value = "查询所有用户", notes = "100002")
     @RequestMapping(path = "selectAll", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public List<LiupengUser> selectAll() {
         return this.liupengUserService.queryAll();
@@ -54,7 +55,7 @@ public class LiupengUserController {
      *
      * @return List
      */
-    @ApiOperation("添加一个用户")
+    @ApiOperation(value = "添加一个用户", notes = "100003")
     @RequestMapping(path = "addOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public LiupengUser addOne(LiupengUser liupengUser) {
         return this.liupengUserService.insert(liupengUser);
@@ -65,7 +66,7 @@ public class LiupengUserController {
      *
      * @return boolean
      */
-    @ApiOperation("删除一个用户")
+    @ApiOperation(value = "删除一个用户", notes = "100004")
     @RequestMapping(path = "delOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public boolean delOne(LiupengUser liupengUser) {
         return this.liupengUserService.deleteById(liupengUser.getId());
@@ -76,7 +77,7 @@ public class LiupengUserController {
      *
      * @return LiupengUser
      */
-    @ApiOperation("用户更新数据")
+    @ApiOperation(value = "用户更新数据", notes = "100005")
     @RequestMapping(path = "updateOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public LiupengUser update(LiupengUser liupengUser) {
         return this.liupengUserService.update(liupengUser);

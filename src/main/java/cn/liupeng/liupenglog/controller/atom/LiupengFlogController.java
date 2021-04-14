@@ -1,13 +1,14 @@
-package cn.liupeng.liupenglog.controller;
+package cn.liupeng.liupenglog.controller.atom;
 
 import cn.liupeng.liupenglog.entity.LiupengFlog;
 import cn.liupeng.liupenglog.service.LiupengFlogService;
-import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public class LiupengFlogController {
      * @param id 主键
      * @return 单条数据
      */
-    @ApiOperation("查询一个Flag")
+    @ApiOperation(value = "查询一个Flag", notes = "060001")
     @RequestMapping(path = "selectOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public LiupengFlog selectOne(Integer id) {
         return this.liupengFlogService.queryById(id);
@@ -43,7 +44,7 @@ public class LiupengFlogController {
      *
      * @return List
      */
-    @ApiOperation("查询所有Flag")
+    @ApiOperation(value = "查询所有Flag", notes = "060002")
     @RequestMapping(path = "selectAll", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public List<LiupengFlog> selectAll() {
         return this.liupengFlogService.queryAll();
@@ -54,7 +55,7 @@ public class LiupengFlogController {
      *
      * @return List
      */
-    @ApiOperation("添加一个Flag")
+    @ApiOperation(value = "添加一个Flag", notes = "060003")
     @RequestMapping(path = "addOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public LiupengFlog addOne(LiupengFlog liupengFlog) {
         return this.liupengFlogService.insert(liupengFlog);
@@ -65,7 +66,7 @@ public class LiupengFlogController {
      *
      * @return boolean
      */
-    @ApiOperation("删除一个Flag")
+    @ApiOperation(value = "删除一个Flag", notes = "060004")
     @RequestMapping(path = "delOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public boolean delOne(LiupengFlog liupengFlog) {
         return this.liupengFlogService.deleteById(liupengFlog.getId());
@@ -76,7 +77,7 @@ public class LiupengFlogController {
      *
      * @return LiupengFlog
      */
-    @ApiOperation("Flag更新数据")
+    @ApiOperation(value = "Flag更新数据", notes = "060005")
     @RequestMapping(path = "updateOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public LiupengFlog update(LiupengFlog liupengFlog) {
         return this.liupengFlogService.update(liupengFlog);

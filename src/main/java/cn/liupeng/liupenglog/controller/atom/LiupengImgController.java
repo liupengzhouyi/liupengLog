@@ -1,13 +1,14 @@
-package cn.liupeng.liupenglog.controller;
+package cn.liupeng.liupenglog.controller.atom;
 
 import cn.liupeng.liupenglog.entity.LiupengImg;
 import cn.liupeng.liupenglog.service.LiupengImgService;
-import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public class LiupengImgController {
      * @param id 主键
      * @return 单条数据
      */
-    @ApiOperation("查询一个IMG")
+    @ApiOperation(value = "查询一个IMG", notes = "070001")
     @RequestMapping(path = "selectOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public LiupengImg selectOne(Integer id) {
         return this.liupengImgService.queryById(id);
@@ -43,7 +44,7 @@ public class LiupengImgController {
      *
      * @return List
      */
-    @ApiOperation("查询所有IMG")
+    @ApiOperation(value = "查询所有IMG", notes = "070002")
     @RequestMapping(path = "selectAll", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public List<LiupengImg> selectAll() {
         return this.liupengImgService.queryAll();
@@ -54,7 +55,7 @@ public class LiupengImgController {
      *
      * @return List
      */
-    @ApiOperation("添加一个IMG")
+    @ApiOperation(value = "添加一个IMG", notes = "070003")
     @RequestMapping(path = "addOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public LiupengImg addOne(LiupengImg liupengImg) {
         return this.liupengImgService.insert(liupengImg);
@@ -65,7 +66,7 @@ public class LiupengImgController {
      *
      * @return boolean
      */
-    @ApiOperation("删除一个IMG")
+    @ApiOperation(value = "删除一个IMG", notes = "070004")
     @RequestMapping(path = "delOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public boolean delOne(LiupengImg liupengImg) {
         return this.liupengImgService.deleteById(liupengImg.getId());
@@ -76,7 +77,7 @@ public class LiupengImgController {
      *
      * @return LiupengImg
      */
-    @ApiOperation("IMG更新数据")
+    @ApiOperation(value = "IMG更新数据", notes = "070008")
     @RequestMapping(path = "updateOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public LiupengImg update(LiupengImg liupengImg) {
         return this.liupengImgService.update(liupengImg);

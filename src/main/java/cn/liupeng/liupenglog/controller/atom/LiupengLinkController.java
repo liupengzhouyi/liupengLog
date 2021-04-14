@@ -1,13 +1,14 @@
-package cn.liupeng.liupenglog.controller;
+package cn.liupeng.liupenglog.controller.atom;
 
 import cn.liupeng.liupenglog.entity.LiupengLink;
 import cn.liupeng.liupenglog.service.LiupengLinkService;
-import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public class LiupengLinkController {
      * @param id 主键
      * @return 单条数据
      */
-    @ApiOperation("查询一个Link文章")
+    @ApiOperation(value = "查询一个Link文章", notes = "080001")
     @RequestMapping(path = "selectOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public LiupengLink selectOne(Integer id) {
         return this.liupengLinkService.queryById(id);
@@ -43,7 +44,7 @@ public class LiupengLinkController {
      *
      * @return List
      */
-    @ApiOperation("查询所有Link文章")
+    @ApiOperation(value = "查询所有Link文章", notes = "080002")
     @RequestMapping(path = "selectAll", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public List<LiupengLink> selectAll() {
         return this.liupengLinkService.queryAll();
@@ -54,7 +55,7 @@ public class LiupengLinkController {
      *
      * @return List
      */
-    @ApiOperation("添加一个Link文章")
+    @ApiOperation(value = "添加一个Link文章", notes = "080003")
     @RequestMapping(path = "addOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public LiupengLink addOne(LiupengLink liupengLink) {
         return this.liupengLinkService.insert(liupengLink);
@@ -65,7 +66,7 @@ public class LiupengLinkController {
      *
      * @return boolean
      */
-    @ApiOperation("删除一个Link文章")
+    @ApiOperation(value = "删除一个Link文章", notes = "080004")
     @RequestMapping(path = "delOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public boolean delOne(LiupengLink liupengLink) {
         return this.liupengLinkService.deleteById(liupengLink.getId());
@@ -76,7 +77,7 @@ public class LiupengLinkController {
      *
      * @return LiupengLink
      */
-    @ApiOperation("Link文章更新数据")
+    @ApiOperation(value = "Link文章更新数据", notes = "080005")
     @RequestMapping(path = "updateOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public LiupengLink update(LiupengLink liupengLink) {
         return this.liupengLinkService.update(liupengLink);

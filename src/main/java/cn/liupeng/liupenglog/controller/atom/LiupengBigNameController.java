@@ -1,13 +1,14 @@
-package cn.liupeng.liupenglog.controller;
+package cn.liupeng.liupenglog.controller.atom;
 
 import cn.liupeng.liupenglog.entity.LiupengBigName;
 import cn.liupeng.liupenglog.service.LiupengBigNameService;
-import org.springframework.web.bind.annotation.*;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.Resource;
-
 import java.util.List;
 
 /**
@@ -32,7 +33,7 @@ public class LiupengBigNameController {
      * @param id 主键
      * @return 单条数据
      */
-    @ApiOperation("查询一个称号")
+    @ApiOperation(value = "查询一个称号", notes = "050001")
     @RequestMapping(path = "selectOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public LiupengBigName selectOne(Integer id) {
         return this.liupengBigNameService.queryById(id);
@@ -43,7 +44,7 @@ public class LiupengBigNameController {
      *
      * @return List
      */
-    @ApiOperation("查询所有称号")
+    @ApiOperation(value = "查询所有称号", notes = "050002")
     @RequestMapping(path = "selectAll", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public List<LiupengBigName> selectAll() {
         return this.liupengBigNameService.queryAll();
@@ -54,7 +55,7 @@ public class LiupengBigNameController {
      *
      * @return List
      */
-    @ApiOperation("添加一个称号")
+    @ApiOperation(value = "添加一个称号", notes = "050003")
     @RequestMapping(path = "addOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public LiupengBigName addOne(LiupengBigName liupengBigName) {
         return this.liupengBigNameService.insert(liupengBigName);
@@ -65,7 +66,7 @@ public class LiupengBigNameController {
      *
      * @return boolean
      */
-    @ApiOperation("删除一个称号")
+    @ApiOperation(value = "删除一个称号", notes = "050004")
     @RequestMapping(path = "delOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public boolean delOne(LiupengBigName liupengBigName) {
         return this.liupengBigNameService.deleteById(liupengBigName.getId());
@@ -76,7 +77,7 @@ public class LiupengBigNameController {
      *
      * @return LiupengBigName
      */
-    @ApiOperation("称号更新数据")
+    @ApiOperation(value = "称号更新数据", notes = "050005")
     @RequestMapping(path = "updateOne", method = RequestMethod.POST, produces = "application/json;charset=UTF-8")
     public LiupengBigName update(LiupengBigName liupengBigName) {
         return this.liupengBigNameService.update(liupengBigName);
